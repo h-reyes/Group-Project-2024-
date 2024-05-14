@@ -1,6 +1,20 @@
-public class studentRecords{
+import java.io.*
 
-public static void main (String[] args){
+public class studentProgramforfile{
+
+    public static void studentProgramforfile (){
+
+        File file = new File(info.txt);
+        filewriter fw = new Filewriter (file);
+        printwriter pw = new Printwriter (fw);
+
+        pw.println(name 1, cosc 112, math 122 );
+        pw.println(name 2, english 101, math 114);
+        pw.println(name 3, psychology , sociology );
+        pw.println(name 4, nurs 102, math 225 );
+        pw.println(name 5, Reed, elective );
+
+        pw.close ();
 
 }
 

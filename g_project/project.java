@@ -1,43 +1,98 @@
 package g_project;
-
+import java.io.*;
 import java.util.*;
-import java.io.IOException;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.PrintWriter;
+// import java.io.IOException;
+// import java.io.FileInputStream;
+// import java.io.FileOutputStream;
+// import java.io.PrintWriter;
 
 public class project{
+    
+    // public static void studentProgramforfile (){
 
+    //     File file = new File(info.txt);
+    //     Filewriter fw = new Filewriter (file);
+    //     Printwriter pw = new Printwriter (fw);
 
+    //     pw.println(name 1, cosc 112, math 122 );
+    //     pw.println(name 2, english 101, math 114);
+    //     pw.println(name 3, psychology , sociology );
+    //     pw.println(name 4, nurs 102, math 225 );
+    //     pw.println(name 5, Reed, elective );
+
+    //     pw.close ();
+    // }
 // method for adding student
 public static void addStudent() throws IOException{
 
 Scanner scnr = new Scanner(System.in);      //for user input
+Random rand = new Random();
 // FileInputStream fileStream = new FileInputStream("studentRecords.txt"); //for reading from file
 // Scanner inFS = new Scanner (fileStream);        //for reading from file
 FileOutputStream fileStream2 = null;        //for writing to file
 PrintWriter outFS = null;     //for writing to file
 String userName;
+int studentID = 220;
 for(int i=0; i<1; i++){
 System.out.println("Enter your name");    
 userName = scnr.nextLine();
 fileStream2 = new FileOutputStream("studentRecords.txt", true);
 outFS = new PrintWriter (fileStream2);     //for writing to file
 outFS.println(userName);
+outFS.printf("%d%d\n\n", studentID, rand.nextInt(rand.nextInt(999))+100 );
+// major intended
 outFS.close();
-scnr.close();
+// scnr.close();
 }
 }
-
+//view students methods
 public static void viewStudent() throws IOException{
-
+String userName, tempName;
+Scanner scnrString = new Scanner(System.in);
+Scanner scnrChar = new Scanner(System.in); 
 FileInputStream fileStream = null;
-fileStream = new FileInputStream("studentRecords.txt"); //for reading from file
 Scanner inFS = null;
-inFS = new Scanner (fileStream);    
-inFS.close();
-}
 
+System.out.println("Enter name of student you would like to view");
+userName = scnrString.nextLine();
+
+
+fileStream = new FileInputStream("studentRecords.txt"); //for reading from file
+inFS = new Scanner (fileStream);    
+
+while(inFS.hasNextLine()){
+    tempName = inFS.nextLine();
+    
+    if(userName.equals(tempName)){
+        System.out.println("Student Found");
+        System.out.println(tempName);
+        System.out.println("Student ID: " + inFS.nextInt() + GPA "\n");
+        inFS.nextLine();
+        
+    }
+    // // else if(inFS.hasNextLine()) {
+    // //     System.out.println("\nStudent not Found\na. Return to main menu");
+    // //     System.out.println("Please enter your selection");
+    // //     char userChoice = scnrChar.nextLine().charAt(0);
+    // //    if((userChoice == 'a') || (userChoice == 'A')){
+    // //             System.out.println("You have returned to the main menu");
+    // //             inFS.close();
+    // //             break;
+    // //         }
+    // //         else{
+    // //             inFS.close();
+    // //             break;
+    // //         }
+            
+        }
+        inFS.close();
+
+    // switch()
+
+    }
+
+
+//adding courses and categorize
 public static void addingCourse() throws IOException {
 Random rand = new Random ();
 Scanner scnr = new Scanner(System.in);
@@ -64,11 +119,11 @@ intendedMajor = scnrInt.nextInt() - 1;
     outFS.println(rand.nextInt(89999)+10000);
     outFS.println(major[intendedMajor]);
     outFS.close();
-    scnr.close();
-    scnrInt.close();
+    // scnr.close();
+    // scnrInt.close();
 }
 }
-
+//main method
     public static void main(String[] args) throws IOException{
         Scanner scnr = new Scanner (System.in);
         int [] studentID = {220, 221, 222, 223, 224};
@@ -77,32 +132,29 @@ String[] names = {" name 1", " name 2", " name 3", "name4", "name 5"};//{ad,am,a
 
             System.out.println("Welcome to University!");
     int userChoice = 0; 
-     while(userChoice != 5){
-            System.out.println("1. Option 1\n2. Option 2 \n3. Option 3\n4. Option 4\nPlease enter the menu item number you would like to navigate to\n");
+     while(userChoice != 4){
+            System.out.println("1. Create Student Profile \n2. Create Course\n3. View Student\nPlease enter the menu item number you would like to navigate to\n");
 
     userChoice = scnr.nextInt(); 
 
     switch (userChoice){
         case 1:
-            System.out.println("Option 1\n");
-            break;  
+            System.out.println("1. Create Student Profile\n");
+            addStudent();
+                break;
         case 2:
-            System.out.println("Option 2\n");
-            
-            break;
-        case 3:
-            System.out.println("Option 3\n");
+            System.out.println("2. Add Courses\n");
             addingCourse();
             break;
-        case 4:
-            System.out.println("Option 4\n");
-
+        case 3:
+            System.out.println("3. View Student\n");
+            viewStudent();
             break;
         default:
             System.out.println("Invalid Choice");
             break;
         }  
     }
-    scnr.close();
+    // scnr.close();
     }
 }
