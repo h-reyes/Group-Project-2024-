@@ -26,20 +26,26 @@ public class project{
 public static void addStudent() throws IOException{
 
 Scanner scnr = new Scanner(System.in);      //for user input
+Scanner scnrD = new Scanner(System.in);      //for user input
+
 Random rand = new Random();
 // FileInputStream fileStream = new FileInputStream("studentRecords.txt"); //for reading from file
 // Scanner inFS = new Scanner (fileStream);        //for reading from file
 FileOutputStream fileStream2 = null;        //for writing to file
 PrintWriter outFS = null;     //for writing to file
 String userName;
+double usergPA;
 int studentID = 220;
 for(int i=0; i<1; i++){
 System.out.println("Enter your name");    
-userName = scnr.nextLine();
+userName = scnr.nextLine();    
+System.out.println("Enter your GPA");
+usergPA = scnrD.nextDouble();
 fileStream2 = new FileOutputStream("studentRecords.txt", true);
 outFS = new PrintWriter (fileStream2);     //for writing to file
 outFS.println(userName);
-outFS.printf("%d%d\n\n", studentID, rand.nextInt(rand.nextInt(999))+100 );
+outFS.printf("%d%d\n", studentID, rand.nextInt(rand.nextInt(999))+100 );
+outFS.println(usergPA);
 // major intended
 outFS.close();
 // scnr.close();
@@ -66,8 +72,9 @@ while(inFS.hasNextLine()){
     if(userName.equals(tempName)){
         System.out.println("Student Found");
         System.out.println(tempName);
-        System.out.println("Student ID: " + inFS.nextInt() + GPA "\n");
+        System.out.println("Student ID: " + inFS.nextInt());
         inFS.nextLine();
+        System.out.println("GPA: " + inFS.nextLine());
         
     }
     // // else if(inFS.hasNextLine()) {
@@ -97,10 +104,12 @@ public static void addingCourse() throws IOException {
 Random rand = new Random ();
 Scanner scnr = new Scanner(System.in);
 Scanner scnrInt = new Scanner(System.in);
+// Scanner scnrDouble = new Scanner(System.in);
 FileOutputStream fileStream3 = null;        //for writing to file
 PrintWriter outFS = null;     //for writing to file
 String courseName; 
 int intendedMajor;
+
     String[] major ={"Computer Science","Nursing" ,"Math","Sociology","Child care"};   
     
     for(int i=0; i<1; i++){
@@ -128,8 +137,15 @@ intendedMajor = scnrInt.nextInt() - 1;
         Scanner scnr = new Scanner (System.in);
         int [] studentID = {220, 221, 222, 223, 224};
         //int [] [] 
-String[] names = {" name 1", " name 2", " name 3", "name4", "name 5"};//{ad,am,ac}
-
+      String[] names = {" name 1", " name 2", " name 3", "name4", "name 5"};//{ad,am,ac}
+    //    Student[] s = new Student[3];// Array of objects.
+    //    [0] = new Student("Peter",3 );
+	//    [1] = new Student("John", 4);
+	//    [2] = new Student("Lisa", 5);
+    //    [3]=new Student("Bella", 6);
+		for (int i = 0; i < 3; ++i) {
+            
+			// System.out.println(s[i].toString()); 
             System.out.println("Welcome to University!");
     int userChoice = 0; 
      while(userChoice != 4){
@@ -157,4 +173,5 @@ String[] names = {" name 1", " name 2", " name 3", "name4", "name 5"};//{ad,am,a
     }
     // scnr.close();
     }
+}
 }
